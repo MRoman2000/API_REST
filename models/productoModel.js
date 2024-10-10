@@ -1,3 +1,4 @@
+const { query } = require('express');
 const {sql, connectToDatabase } = require('../models/db');
 
 
@@ -7,19 +8,24 @@ async function obtenerProductos(){
     return result.recordset;
 }
 
+
+
 async function agregarProducto(producto) {
-    const { Nombre, Descripcion, Stock, Imagen } = producto;
+    const { Nombre, Descripcion, Stock, Imagen , CategoriaId} = producto;
     const pool = await connectToDatabase();
     const request = pool.request();
     request.input('Nombre', sql.VarChar, Nombre);
     request.input('Descripcion', sql.VarChar, Descripcion);
     request.input('Stock', sql.Int, Stock);
     request.input('Imagen', sql.VarBinary, Imagen);
+    request.input('CategoriaId', sql.Int, CategoriaId);
 
-    await request.query('INSERT INTO Productos (Nombre, Descripcion, Stock, Imagen) VALUES (@Nombre, @Descripcion, @Stock, @Imagen)');
+    await request.query('INSERT INTO Productos (Nombre, Descripcion, Stock, Imagen, CategoriaId) VALUES (@Nombre, @Descripcion, @Stock, @Imagen, @CategoriaId)');
+   
 }
 
 module.exports = {
     obtenerProductos,
     agregarProducto,
+  //  obtenerCategorias,
 };

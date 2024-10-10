@@ -2,6 +2,7 @@
 const express = require('express');
 
 const productosRoutes = require('./routes/productosRoutes');
+const categoriasRoutes = require('./routes/categoriasRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 
@@ -14,8 +15,10 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 
 // Rutas 
+
+app.use('/api/categorias',categoriasRoutes);
 app.use('/api/productos',productosRoutes);
-app.use('api', authRoutes);
+app.use('/api', authRoutes);
 
 
 app.get('/', (req, res) => {
