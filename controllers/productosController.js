@@ -11,7 +11,6 @@ async function obtenerProductos(req, res) {
     }
 }
 
-
 async function agregarProducto(req, res) {
     try {
         await productoModel.agregarProducto(req.body);  // Pasar todo el objeto directamente al modelo

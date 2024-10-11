@@ -16,9 +16,13 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Rutas 
 
-app.use('/api/categorias',categoriasRoutes);
-app.use('/api/productos',productosRoutes);
-app.use('/api', authRoutes);
+app.use('/categorias',categoriasRoutes);
+//app.use('/api/productos',productosRoutes);
+app.use('/productos',productosRoutes);
+app.use('/login', authRoutes);
+
+
+
 
 
 app.get('/', (req, res) => {
