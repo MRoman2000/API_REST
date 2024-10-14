@@ -4,7 +4,7 @@ const express = require('express');
 const productosRoutes = require('./routes/productosRoutes');
 const categoriasRoutes = require('./routes/categoriasRoutes');
 const authRoutes = require('./routes/authRoutes');
-
+const register = require('./routes/register');
 
 
 const app = express();
@@ -20,7 +20,7 @@ app.use('/categorias',categoriasRoutes);
 //app.use('/api/productos',productosRoutes);
 app.use('/productos',productosRoutes);
 app.use('/login', authRoutes);
-
+app.use('/register', register);
 
 
 
