@@ -9,8 +9,8 @@ const dbConfig = {
     options: {
         encrypt: false,
         trustServerCertificate: true,
-        trustedConnection: true,  
-      },
+        trustedConnection: true,
+    },
 };
 
 async function connectToDatabase() {

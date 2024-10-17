@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const productosController = require('../controllers/productosController');
-const verificarToken = require('../middleware/authMiddleware');
+const upload = require('../middleware/upload');
 
-
-// router.get('/',  productosController.obtenerCategorias);
-router.get('/',  productosController.obtenerProductos);
-router.post('/', productosController.agregarProducto);
+router.post('/', upload.single('Imagen'), productosController.agregarProducto);
+router.get('/', productosController.obtenerProductos);
 
 module.exports = router;
-

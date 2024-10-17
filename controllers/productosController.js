@@ -1,41 +1,35 @@
-const productoModel = require('../models/productoModel');
-
-async function obtenerProductos(req, res) {
-    try {
-        const productos = await productoModel.obtenerProductos();
-        res.json(productos);
-    } catch (err) {
-        console.error('Error al obtener productos:', err);
-        res.status(500).json({ message: 'Error al obtener productos', error: err.message });
-
-    }
-}
+const productosModel = require('../models/productoModel');
 
 async function agregarProducto(req, res) {
     try {
-        await productoModel.agregarProducto(req.body);  // Pasar todo el objeto directamente al modelo
-        console.log(req.body);
+        const producto = {
+            Nombre: req.body.Nombre,
+            Descripcion: req.body.Descripcion,
+            Stock: req.body.Stock,
+            Imagen: req.file.filename, // Asegúrate de usar "filename" en minúsculas
+            CategoriaId: req.body.CategoriaId
+        };
+
+        await productosModel.agregarProducto(producto);
+        console.log(producto);
         res.status(201).json({ message: 'Producto agregado exitosamente' });
     } catch (err) {
         console.error('Error al agregar producto:', err);
         res.status(500).json({ message: 'Error al agregar producto', error: err.message });
     }
 }
-/* async function agregarProducto(req, res) {
-    const { Nombre, Descripcion, Stock, Imagen , CategoriaId } = req.body;
 
+async function obtenerProductos(req, res) {
     try {
-        await productoModel.agregarProducto({ Nombre, Descripcion, Stock, Imagen,CategoriaId });
-        res.status(201).json({ message: 'Producto agregado exitosamente' });
-        console.log(res)
+        const productos = await productosModel.obtenerProductos();
+        res.json(productos);
     } catch (err) {
         console.error('Error al obtener productos:', err);
         res.status(500).json({ message: 'Error al obtener productos', error: err.message });
     }
-} */
+}
 
 module.exports = {
-    obtenerProductos,
     agregarProducto,
-    //   obtenerCategorias,
-};
+    obtenerProductos,
+}

@@ -31,12 +31,12 @@ async function login(req, res) {
         // Responder con los datos del usuario y el token
         res.json({
             message: 'Login correcto',
-            id: user.ID,
-            nombreUsuario: user.NombreUsuario,
-            rol: user.Rol,
-            email: user.Email,
-            imagen: user.Imagen,
-            token: token,
+            Id: user.ID,
+            NombreUsuario: user.NombreUsuario,
+            Rol: user.Rol,
+            Email: user.Email,
+            Imagen: user.Imagen,
+            Token: token,
         });
 
     } catch (err) {
